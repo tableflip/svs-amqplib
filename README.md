@@ -5,7 +5,7 @@ Utilities for working with the [amqplib](https://www.npmjs.org/package/amqplib).
 ## Example
 
 ```js
-var amqp = require('svs-amqp')(config.url)
+var amqp = require('svs-amqplib')(config.url)
 
 /**
  * Create a new amqp connection and create a new channel
@@ -31,12 +31,12 @@ amqp.getConfirmChannel(function (er, chan) {
  * setupChannel should connect, setup and return a channel
  * customise timeout between re-connection retries
  */
-amqp.reconnect('ID', setupChanel, {retryTimeout: 5000}, function (er, rc) {
+amqp.reconnect('ID', setupChannel, {retryTimeout: 5000}, function (er, rc) {
   console.log('Connected')
   // In the future you can call rc.stop() to stop trying to reconnect
 })
 
-function setupChanel (cb) {
+function setupChannel (cb) {
   amqp.getChannel(function (er, chan) {
     chan.assertQueue('queue', {}, function (er) {
       chan.bindQueue('queue', 'exchange', 'route', {}, function (er) {
