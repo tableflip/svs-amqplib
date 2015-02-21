@@ -1,6 +1,6 @@
 {
   "name": "svs-amqplib",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Utilities for working with the amqplib",
   "main": "index.js",
   "scripts": {
