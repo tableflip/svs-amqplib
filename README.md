@@ -41,9 +41,9 @@ function setupChanel (cb) {
     chan.assertQueue('queue', {}, function (er) {
       chan.bindQueue('queue', 'exchange', 'route', {}, function (er) {
         chan.consume('queue', onMessage, {}, function (er) {
-          // Eat some messages
-          cb(null, chan)
+          cb(null, chan) // Ready!
         })
+        function onMessage () { /* Eat some messages! */ }
       })
     })
   })

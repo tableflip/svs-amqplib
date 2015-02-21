@@ -6,7 +6,7 @@ module.exports = function (url) {
   var channel = null
   var callbacks = []
 
-  return function getChannel (cb) {
+  return function getConfirmChannel (cb) {
     if (channel) return process.nextTick(function () {
       cb(null, channel)
     })
@@ -28,7 +28,7 @@ module.exports = function (url) {
           }
 
           conn.once('error', function (er) {
-            console.error('AMQP connection error', er)
+            console.error('AMQP connection error', er, er.stack)
           })
 
           conn.once('close', function () {
@@ -40,7 +40,7 @@ module.exports = function (url) {
         })
       },
       function (conn, cb) {
-        conn.createChannel(function (er, chan) {
+        conn.createConfirmChannel(function (er, chan) {
           if (er) {
             console.error('AMQP create channel error', er)
             return cb(er)
